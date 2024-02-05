@@ -1,0 +1,30 @@
+import json
+
+def create_account():
+    # Load existing user data from a file (if any)
+    try:
+        with open('user_data.json', 'r') as file:
+            users = json.load(file)
+    except FileNotFoundError:
+        users = {}
+
+    # Get user input for creating an account
+    username = input("Enter your username: ")
+    password = input("Enter your password: ")
+
+    # Check if the username already exists
+    if username in users:
+        print("Username already exists. Please choose a different username.")
+        return
+
+    # Add the new user to the dictionary
+    users[username] = {'password': password}
+
+    # Save the updated user data to the file
+    with open('user_data.json', 'w') as file:
+        json.dump(users, file, indent=4)
+
+    print("Account created successfully.")
+
+# Example usage
+create_account()
