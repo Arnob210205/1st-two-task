@@ -5,26 +5,24 @@ def create_account():
     username = username_entry.get()
     password = password_entry.get()
 
-    # You can add more validation logic here before creating an account
-
-    # For simplicity, just show a messagebox with the entered credentials
+    
     messagebox.showinfo("Account Created", f"Account created successfully!\nUsername: {username}\nPassword: {password}")
 
-# Create main window
+
 root = tk.Tk()
 root.title("Account Signup")
 
-# Create labels and entry widgets
+
 username_label = tk.Label(root, text="Username:")
 username_entry = tk.Entry(root)
 
 password_label = tk.Label(root, text="Password:")
 password_entry = tk.Entry(root, show="*")  # Show asterisks for password input
 
-# Create signup button
+
 signup_button = tk.Button(root, text="Sign Up", command=create_account)
 
-# Place widgets on the grid
+
 username_label.grid(row=0, column=0, pady=10)
 username_entry.grid(row=0, column=1, pady=10)
 
@@ -33,7 +31,7 @@ password_entry.grid(row=1, column=1, pady=10)
 
 signup_button.grid(row=2, column=0, columnspan=2, pady=10)
 
-# Run the main loop
+
 root.mainloop()
 
 import tkinter as tk
