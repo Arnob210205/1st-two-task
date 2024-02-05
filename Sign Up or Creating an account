@@ -1,30 +1,38 @@
-import json
+import tkinter as tk
+from tkinter import messagebox
 
 def create_account():
-    # Load existing user data from a file (if any)
-    try:
-        with open('user_data.json', 'r') as file:
-            users = json.load(file)
-    except FileNotFoundError:
-        users = {}
+    username = username_entry.get()
+    password = password_entry.get()
 
-    # Get user input for creating an account
-    username = input("Enter your username: ")
-    password = input("Enter your password: ")
+    # You can add more validation logic here before creating an account
 
-    # Check if the username already exists
-    if username in users:
-        print("Username already exists. Please choose a different username.")
-        return
+    # For simplicity, just show a messagebox with the entered credentials
+    messagebox.showinfo("Account Created", f"Account created successfully!\nUsername: {username}\nPassword: {password}")
 
-    # Add the new user to the dictionary
-    users[username] = {'password': password}
+# Create main window
+root = tk.Tk()
+root.title("Account Signup")
 
-    # Save the updated user data to the file
-    with open('user_data.json', 'w') as file:
-        json.dump(users, file, indent=4)
+# Create labels and entry widgets
+username_label = tk.Label(root, text="Username:")
+username_entry = tk.Entry(root)
 
-    print("Account created successfully.")
+password_label = tk.Label(root, text="Password:")
+password_entry = tk.Entry(root, show="*")  # Show asterisks for password input
 
-# Example usage
-create_account()
+# Create signup button
+signup_button = tk.Button(root, text="Sign Up", command=create_account)
+
+# Place widgets on the grid
+username_label.grid(row=0, column=0, pady=10)
+username_entry.grid(row=0, column=1, pady=10)
+
+password_label.grid(row=1, column=0, pady=10)
+password_entry.grid(row=1, column=1, pady=10)
+
+signup_button.grid(row=2, column=0, columnspan=2, pady=10)
+
+# Run the main loop
+root.mainloop()
+
